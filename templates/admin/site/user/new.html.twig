@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} Créer un nouveau membre{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="page-title text-center">Créer un nouveau membre</h1>
+
+    {{ include('admin/site/user/_form.html.twig') }}
+
+    <a href="{{ path('user_index') }}" class="btn btn-outline-primary mt-3">Retour à la liste</a>
+</div>
+{% endblock %}
