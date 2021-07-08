@@ -6,6 +6,7 @@ use App\Repository\SubcategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass=SubcategoryRepository::class)
@@ -25,6 +26,7 @@ class Subcategory
     private $name;
 
     /**
+     * @Gedmo\Slug(fields={"name"})
      * @ORM\Column(type="string", length=255)
      */
     private $slug;
@@ -35,19 +37,19 @@ class Subcategory
     private $logo;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="subcategories")
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="subcategory")
      * @ORM\JoinColumn(nullable=false)
      */
     private $category;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Value::class, mappedBy="subcategory")
+     * @ORM\OneToMany(targetEntity=Link::class, mappedBy="subcategory", orphanRemoval=true)
      */
-    private $thevalue;
+    private $link;
 
     public function __construct()
     {
-        $this->thevalue = new ArrayCollection();
+        $this->link = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -104,29 +106,37 @@ class Subcategory
     }
 
     /**
-     * @return Collection|Value[]
+     * @return Collection|Link[]
      */
-    public function getThevalue(): Collection
+    public function getLink(): Collection
     {
-        return $this->thevalue;
+        return $this->link;
     }
 
-    public function addThevalue(Value $thevalue): self
+    public function addLink(Link $link): self
     {
-        if (!$this->thevalue->contains($thevalue)) {
-            $this->thevalue[] = $thevalue;
-            $thevalue->addSubcategory($this);
+        if (!$this->link->contains($link)) {
+            $this->link[] = $link;
+            $link->setSubcategory($this);
         }
 
         return $this;
     }
 
-    public function removeThevalue(Value $thevalue): self
+    public function removeLink(Link $link): self
     {
-        if ($this->thevalue->removeElement($thevalue)) {
-            $thevalue->removeSubcategory($this);
+        if ($this->link->removeElement($link)) {
+            // set the owning side to null (unless already changed)
+            if ($link->getSubcategory() === $this) {
+                $link->setSubcategory(null);
+            }
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getName();
     }
 }

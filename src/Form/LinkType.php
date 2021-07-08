@@ -12,10 +12,11 @@ class LinkType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('subcategory')
             ->add('name')
-            ->add('slug')
             ->add('link')
             ->add('statue')
+            ->add('Top')
             ->add('value')
         ;
     }

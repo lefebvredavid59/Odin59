@@ -19,6 +19,45 @@ class LinkRepository extends ServiceEntityRepository
         parent::__construct($registry, Link::class);
     }
 
+
+    public function filterValue($slug){
+
+        return $this->createQueryBuilder('l')
+            ->innerJoin('l.subcategory','s')
+            ->where('s.slug = :slug')
+            ->setParameter('slug', $slug)
+            ->orderBy('l.name', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    public function filterLinkBySubcat(){
+
+        return $this->createQueryBuilder('l')
+            ->innerJoin('l.subcategory','s')
+            ->where('s.slug = :slug')
+            ->setParameter('slug', $slug)
+            ->orderBy('l.name', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+//    public function filterLinkValue($v_slug, $slug){
+//
+//        return $this->createQueryBuilder('l')
+//            ->innerJoin('l.subcategory','s')
+//            ->innerJoin('l.value','v')
+//            ->where('s.slug = :v_slug')
+//            ->andWhere('v.slug = :slug')
+//            ->setParameters(['v_slug' => $v_slug , 'slug' => $slug])
+//            ->orderBy('l.name', 'ASC')
+//            ->getQuery()
+//            ->getResult()
+//            ;
+//    }
+
     // /**
     //  * @return Link[] Returns an array of Link objects
     //  */

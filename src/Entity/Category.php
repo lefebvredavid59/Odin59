@@ -6,6 +6,7 @@ use App\Repository\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass=CategoryRepository::class)
@@ -25,6 +26,7 @@ class Category
     private $name;
 
     /**
+     * @Gedmo\Slug(fields={"name"})
      * @ORM\Column(type="string", length=255)
      */
     private $slug;
@@ -37,11 +39,11 @@ class Category
     /**
      * @ORM\OneToMany(targetEntity=Subcategory::class, mappedBy="category", orphanRemoval=true)
      */
-    private $subcategories;
+    private $subcategory;
 
     public function __construct()
     {
-        $this->subcategories = new ArrayCollection();
+        $this->subcategory = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -88,15 +90,15 @@ class Category
     /**
      * @return Collection|Subcategory[]
      */
-    public function getSubcategories(): Collection
+    public function getSubcategory(): Collection
     {
-        return $this->subcategories;
+        return $this->subcategory;
     }
 
     public function addSubcategory(Subcategory $subcategory): self
     {
-        if (!$this->subcategories->contains($subcategory)) {
-            $this->subcategories[] = $subcategory;
+        if (!$this->subcategory->contains($subcategory)) {
+            $this->subcategory[] = $subcategory;
             $subcategory->setCategory($this);
         }
 
@@ -105,7 +107,7 @@ class Category
 
     public function removeSubcategory(Subcategory $subcategory): self
     {
-        if ($this->subcategories->removeElement($subcategory)) {
+        if ($this->subcategory->removeElement($subcategory)) {
             // set the owning side to null (unless already changed)
             if ($subcategory->getCategory() === $this) {
                 $subcategory->setCategory(null);
@@ -113,5 +115,10 @@ class Category
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getName();
     }
 }

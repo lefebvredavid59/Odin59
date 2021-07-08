@@ -17,11 +17,12 @@
     <table class="table" id="listeLien">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>Valeurs</th>
                 <th>Name</th>
                 <th>Slug</th>
                 <th>Link</th>
                 <th>Statue</th>
+                <th>Top</th>
                 <th>Voir</th>
                 <th>Modifier</th>
             </tr>
@@ -29,11 +30,12 @@
         <tbody>
         {% for link in links %}
             <tr>
-                <td>{{ link.id }}</td>
+                <td>{{ link.value.count }}</td>
                 <td>{{ link.name }}</td>
                 <td>{{ link.slug }}</td>
-                <td>{{ link.link }}</td>
+                <td><a href="{{ link.link }}" target="_blank">Lien</a></td>
                 <td>{{ link.statue ? 'Yes' : 'No' }}</td>
+                <td>{{ link.top ? 'Yes' : 'No' }}</td>
                 <td><a href="{{ path('link_show', {'id': link.id}) }}">Voir</a></td>
                 <td>
 

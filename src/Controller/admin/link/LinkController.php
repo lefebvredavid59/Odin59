@@ -37,6 +37,7 @@ class LinkController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $link->setCreated(new \DateTime('now'));
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($link);
             $entityManager->flush();
@@ -69,6 +70,7 @@ class LinkController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $link->setCreated(new \DateTime('now'));
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('link_index', [], Response::HTTP_SEE_OTHER);

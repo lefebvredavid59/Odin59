@@ -5,6 +5,7 @@ namespace App\Controller\admin\link;
 use App\Entity\Value;
 use App\Form\ValueType;
 use App\Repository\ValueRepository;
+use App\Service\UploadValue;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,7 +31,7 @@ class ValueController extends AbstractController
     /**
      * @Route("/new", name="value_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, UploadValue $uploadValue): Response
     {
         $value = new Value();
         $form = $this->createForm(ValueType::class, $value);
@@ -38,6 +39,11 @@ class ValueController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            if ($image = $form->get('picture')->getData()) {
+                $fileName = $uploadValue->upload($image,$value);
+                //Mets a jour l'entite
+                $value->setPicture($fileName);
+            }
             $entityManager->persist($value);
             $entityManager->flush();
 
@@ -63,13 +69,23 @@ class ValueController extends AbstractController
     /**
      * @Route("/{id}/edit", name="value_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Value $value): Response
+    public function edit(Request $request, Value $value, UploadValue $uploadValue): Response
     {
         $form = $this->createForm(ValueType::class, $value);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $entityManager = $this->getDoctrine()->getManager();
+            if ($image = $form->get('picture')->getData()) {
+                // Supprimer l'image deja existante
+                if ($value->getPicture()) {
+                    $uploadValue->remove($value->getPicture());
+                }
+                $fileName = $uploadValue->upload($image,$value);
+                //Mets a jour l'entite
+                $value->setPicture($fileName);
+            }
+            $entityManager->flush();
 
             return $this->redirectToRoute('value_index', [], Response::HTTP_SEE_OTHER);
         }

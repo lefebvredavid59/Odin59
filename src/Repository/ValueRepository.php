@@ -19,6 +19,19 @@ class ValueRepository extends ServiceEntityRepository
         parent::__construct($registry, Value::class);
     }
 
+    public function filterValue($v_slug){
+
+        return $this->createQueryBuilder('v')
+            ->innerJoin('v.links','l')
+            ->innerJoin('l.subcategory','s')
+            ->where('s.slug = :v_slug')
+            ->where('v.links is not empty')
+            ->orderBy('v.name', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     // /**
     //  * @return Value[] Returns an array of Value objects
     //  */

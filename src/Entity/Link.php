@@ -6,6 +6,7 @@ use App\Repository\LinkRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass=LinkRepository::class)
@@ -25,6 +26,7 @@ class Link
     private $name;
 
     /**
+     * @Gedmo\Slug(fields={"name"})
      * @ORM\Column(type="string", length=255)
      */
     private $slug;
@@ -40,9 +42,25 @@ class Link
     private $statue;
 
     /**
+     * @ORM\Column(type="boolean")
+     */
+    private $Top;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Subcategory::class, inversedBy="link")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $subcategory;
+
+    /**
      * @ORM\ManyToMany(targetEntity=Value::class, inversedBy="links")
      */
     private $value;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $created;
 
     public function __construct()
     {
@@ -102,6 +120,30 @@ class Link
         return $this;
     }
 
+    public function getTop(): ?bool
+    {
+        return $this->Top;
+    }
+
+    public function setTop(bool $Top): self
+    {
+        $this->Top = $Top;
+
+        return $this;
+    }
+
+    public function getSubcategory(): ?Subcategory
+    {
+        return $this->subcategory;
+    }
+
+    public function setSubcategory(?Subcategory $subcategory): self
+    {
+        $this->subcategory = $subcategory;
+
+        return $this;
+    }
+
     /**
      * @return Collection|Value[]
      */
@@ -122,6 +164,23 @@ class Link
     public function removeValue(Value $value): self
     {
         $this->value->removeElement($value);
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
+    public function getCreated(): ?\DateTimeInterface
+    {
+        return $this->created;
+    }
+
+    public function setCreated(\DateTimeInterface $created): self
+    {
+        $this->created = $created;
 
         return $this;
     }
