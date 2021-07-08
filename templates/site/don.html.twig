@@ -5,5 +5,35 @@
 {% block body %}
     <div class="col-12">
         <h1 class="page-title"><i class="fas fa-hand-holding-heart"></i> Nous soutenir :</h1>
+
+        <div class="row">
+            <div class="col-12 col-md-4 mb-4 ">
+                <div class="card border-light">
+                    <div class="card-body text-center">
+                        <div class="text-black">
+                            <h5 class="font-weight-bold">Pourquoi nous soutenir ?</h5>
+                        </div>
+                        <img class="w-25 img-fluid mx-auto my-3 rounded-circle"
+                             src="{{ asset('assets/Logo_Odin.svg') }}" alt="Logo du site">
+                        <p class="px-2">Nous souhaitons que le site reste 100% gratuit.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-8 mb-4">
+                <div class="card mb-0">
+                    <div class="row card-body text-center">
+                        {% for support in supports %}
+
+                            <div class="col-md-6">
+                                <p class="font-weight-bold">{{ support.name }}</p>
+                                <p>{{ support.link }}</p>
+                            </div>
+
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}

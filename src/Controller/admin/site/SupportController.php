@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\admin;
+namespace App\Controller\admin\site;
 
 use App\Entity\Support;
 use App\Form\SupportType;

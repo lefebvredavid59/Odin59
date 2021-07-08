@@ -18,7 +18,6 @@
             <tr>
                 <th>Id</th>
                 <th>Email</th>
-{#                <th>Roles</th>#}
                 <th>Pseudo</th>
                 <th>Dernière connexion</th>
                 <th>Date inscription</th>
@@ -32,7 +31,6 @@
                 <tr>
                     <td>{{ user.id }}</td>
                     <td>{{ user.email }}</td>
-{#                    <td>{{ user.roles ? user.roles|json_encode : '' }}</td>#}
                     <td>{{ user.pseudo }}</td>
                     <td>{{ user.lastconnection ? user.lastconnection|date('d-m-Y H:i:s') : '' }}</td>
                     <td>{{ user.registrationdate ? user.registrationdate|date('d-m-Y H:i:s') : '' }}</td>

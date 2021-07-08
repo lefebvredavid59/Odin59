@@ -2,26 +2,28 @@
 
 namespace App\Form;
 
-use App\Entity\Support;
+use App\Entity\Subcategory;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class SupportType extends AbstractType
+class SubcategoryType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('name')
-            ->add('link')
+            ->add('slug')
             ->add('logo')
+            ->add('category')
+            ->add('thevalue')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Support::class,
+            'data_class' => Subcategory::class,
         ]);
     }
 }

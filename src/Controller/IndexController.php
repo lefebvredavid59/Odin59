@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\SupportRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,20 +22,10 @@ class IndexController extends AbstractController
     /**
      * @Route("/don", name="don")
      */
-    public function don(): Response
+    public function don(SupportRepository $supportRepository): Response
     {
         return $this->render('site/don.html.twig', [
-            'controller_name' => 'IndexController',
-        ]);
-    }
-
-    /**
-     * @Route("/emailview", name="emailview")
-     */
-    public function emailview(): Response
-    {
-        return $this->render('registration/confirmation_email.html.twig', [
-            'controller_name' => 'IndexController',
+            'supports' => $supportRepository->findAll(),
         ]);
     }
 }

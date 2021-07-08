@@ -1,12 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Support{% endblock %}
+{% block title %}{{ parent() }} Fiche {{ support.name }}{% endblock %}
 
 {% block body %}
-    <h1>Support</h1>
+    <div class="container">
+        <h1 class="page-title text-center">Fiche {{ support.name }}</h1>
 
-    <table class="table">
-        <tbody>
+        <table class="table">
+            <tbody>
             <tr>
                 <th>Id</th>
                 <td>{{ support.id }}</td>
@@ -27,12 +28,13 @@
                 <th>Logo</th>
                 <td>{{ support.logo }}</td>
             </tr>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
 
-    <a href="{{ path('support_index') }}">back to list</a>
+        <a href="{{ path('support_index') }}" class="btn btn-outline-primary btn-block">Retour à la liste</a>
 
-    <a href="{{ path('support_edit', {'id': support.id}) }}">edit</a>
+        <a href="{{ path('support_edit', {'id': support.id}) }}" class="btn btn-warning btn-block  mt-3">Éditer</a>
 
-    {{ include('support/_delete_form.html.twig') }}
+        {{ include('admin/site/support/_delete_form.html.twig') }}
+    </div>
 {% endblock %}

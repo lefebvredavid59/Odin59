@@ -2,18 +2,18 @@
 
 namespace App\Form;
 
-use App\Entity\Support;
+use App\Entity\Category;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class SupportType extends AbstractType
+class CategoryType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('name')
-            ->add('link')
+            ->add('slug')
             ->add('logo')
         ;
     }
@@ -21,7 +21,7 @@ class SupportType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Support::class,
+            'data_class' => Category::class,
         ]);
     }
 }

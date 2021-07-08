@@ -2,26 +2,28 @@
 
 namespace App\Form;
 
-use App\Entity\Support;
+use App\Entity\Link;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class SupportType extends AbstractType
+class LinkType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('name')
+            ->add('slug')
             ->add('link')
-            ->add('logo')
+            ->add('statue')
+            ->add('value')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Support::class,
+            'data_class' => Link::class,
         ]);
     }
 }
