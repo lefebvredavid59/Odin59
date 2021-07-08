@@ -1,13 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Subcategory{% endblock %}
+{% block title %}{{ parent() }} Edition {{ subcategory.name }}{% endblock %}
 
 {% block body %}
-    <h1>Edit Subcategory</h1>
+<div class="container">
+    <h1 class="page-title text-center">Edition {{ subcategory.name }}</h1>
 
-    {{ include('subcategory/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('admin/link/subcategory/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('subcategory_index') }}">back to list</a>
+    <a href="{{ path('subcategory_index') }}" class="btn btn-outline-primary mt-3">Retour à la
+        liste</a>
 
-    {{ include('subcategory/_delete_form.html.twig') }}
+    {{ include('admin/link/subcategory/_delete_form.html.twig') }}
+</div>
 {% endblock %}

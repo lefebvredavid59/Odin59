@@ -1,11 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Link{% endblock %}
+{% block title %}{{ parent() }} Créer un nouveau lien{% endblock %}
 
 {% block body %}
-    <h1>Create new Link</h1>
+    <div class="container">
+        <h1 class="page-title text-center">Créer un nouveau lien</h1>
 
-    {{ include('link/_form.html.twig') }}
+        {{ include('admin/link/link/_form.html.twig') }}
 
-    <a href="{{ path('link_index') }}">back to list</a>
+        <a href="{{ path('link_index') }}" class="btn btn-outline-primary mt-3">Retour à la liste</a>
+    </div>
 {% endblock %}

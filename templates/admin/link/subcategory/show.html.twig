@@ -1,9 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Subcategory{% endblock %}
+{% block title %}{{ parent() }} Fiche {{ subcategory.name }}{% endblock %}
 
 {% block body %}
-    <h1>Subcategory</h1>
+<div class="container">
+    <h1 class="page-title text-center">Fiche {{ subcategory.name }}</h1>
 
     <table class="table">
         <tbody>
@@ -26,9 +27,10 @@
         </tbody>
     </table>
 
-    <a href="{{ path('subcategory_index') }}">back to list</a>
+    <a href="{{ path('subcategory_index') }}" class="btn btn-outline-primary btn-block">Retour à la liste</a>
 
-    <a href="{{ path('subcategory_edit', {'id': subcategory.id}) }}">edit</a>
+    <a href="{{ path('subcategory_edit', {'id': subcategory.id}) }}" class="btn btn-warning btn-block  mt-3">Éditer</a>
 
-    {{ include('subcategory/_delete_form.html.twig') }}
+    {{ include('admin/link/subcategory/_delete_form.html.twig') }}
+</div>
 {% endblock %}

@@ -5,13 +5,15 @@ namespace App\Controller\admin\link;
 use App\Entity\Category;
 use App\Form\CategoryType;
 use App\Repository\CategoryRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/category")
+ * @Route("/admin/category")
+ * @IsGranted("ROLE_ADMIN")
  */
 class CategoryController extends AbstractController
 {
@@ -20,7 +22,7 @@ class CategoryController extends AbstractController
      */
     public function index(CategoryRepository $categoryRepository): Response
     {
-        return $this->render('category/index.html.twig', [
+        return $this->render('admin/link/category/index.html.twig', [
             'categories' => $categoryRepository->findAll(),
         ]);
     }
@@ -42,7 +44,7 @@ class CategoryController extends AbstractController
             return $this->redirectToRoute('category_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('category/new.html.twig', [
+        return $this->render('admin/link/category/new.html.twig', [
             'category' => $category,
             'form' => $form->createView(),
         ]);
@@ -53,7 +55,7 @@ class CategoryController extends AbstractController
      */
     public function show(Category $category): Response
     {
-        return $this->render('category/show.html.twig', [
+        return $this->render('admin/link/category/show.html.twig', [
             'category' => $category,
         ]);
     }
@@ -72,7 +74,7 @@ class CategoryController extends AbstractController
             return $this->redirectToRoute('category_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('category/edit.html.twig', [
+        return $this->render('admin/link/category/edit.html.twig', [
             'category' => $category,
             'form' => $form->createView(),
         ]);

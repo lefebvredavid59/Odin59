@@ -3,11 +3,11 @@
 {% block title %}{{ parent() }} Créer un nouveau support{% endblock %}
 
 {% block body %}
-<div class="container">
-    <h1 class="page-title text-center">Créer un nouveau support</h1>
+    <div class="container">
+        <h1 class="page-title text-center">Créer un nouveau support</h1>
 
-    {{ include('admin/site/support/_form.html.twig') }}
+        {{ include('admin/site/support/_form.html.twig') }}
 
-    <a href="{{ path('support_index') }}" class="btn btn-outline-primary mt-3">Retour à la liste</a>
-</div>
+        <a href="{{ path('support_index') }}" class="btn btn-outline-primary mt-3">Retour à la liste</a>
+    </div>
 {% endblock %}

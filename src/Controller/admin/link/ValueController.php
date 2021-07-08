@@ -5,13 +5,15 @@ namespace App\Controller\admin\link;
 use App\Entity\Value;
 use App\Form\ValueType;
 use App\Repository\ValueRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/value")
+ * @Route("/admin/value")
+ * @IsGranted("ROLE_ADMIN")
  */
 class ValueController extends AbstractController
 {
@@ -20,7 +22,7 @@ class ValueController extends AbstractController
      */
     public function index(ValueRepository $valueRepository): Response
     {
-        return $this->render('value/index.html.twig', [
+        return $this->render('admin/link/value/index.html.twig', [
             'values' => $valueRepository->findAll(),
         ]);
     }
@@ -42,7 +44,7 @@ class ValueController extends AbstractController
             return $this->redirectToRoute('value_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('value/new.html.twig', [
+        return $this->render('admin/link/value/new.html.twig', [
             'value' => $value,
             'form' => $form->createView(),
         ]);
@@ -53,7 +55,7 @@ class ValueController extends AbstractController
      */
     public function show(Value $value): Response
     {
-        return $this->render('value/show.html.twig', [
+        return $this->render('admin/link/value/show.html.twig', [
             'value' => $value,
         ]);
     }
@@ -72,7 +74,7 @@ class ValueController extends AbstractController
             return $this->redirectToRoute('value_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('value/edit.html.twig', [
+        return $this->render('admin/link/value/edit.html.twig', [
             'value' => $value,
             'form' => $form->createView(),
         ]);

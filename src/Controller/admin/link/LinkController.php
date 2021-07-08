@@ -5,13 +5,15 @@ namespace App\Controller\admin\link;
 use App\Entity\Link;
 use App\Form\LinkType;
 use App\Repository\LinkRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/link")
+ * @Route("/admin/link")
+ * @IsGranted("ROLE_ADMIN")
  */
 class LinkController extends AbstractController
 {
@@ -20,7 +22,7 @@ class LinkController extends AbstractController
      */
     public function index(LinkRepository $linkRepository): Response
     {
-        return $this->render('link/index.html.twig', [
+        return $this->render('admin/link/link/index.html.twig', [
             'links' => $linkRepository->findAll(),
         ]);
     }
@@ -42,7 +44,7 @@ class LinkController extends AbstractController
             return $this->redirectToRoute('link_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('link/new.html.twig', [
+        return $this->render('admin/link/link/new.html.twig', [
             'link' => $link,
             'form' => $form->createView(),
         ]);
@@ -53,7 +55,7 @@ class LinkController extends AbstractController
      */
     public function show(Link $link): Response
     {
-        return $this->render('link/show.html.twig', [
+        return $this->render('admin/link/link/show.html.twig', [
             'link' => $link,
         ]);
     }
@@ -72,7 +74,7 @@ class LinkController extends AbstractController
             return $this->redirectToRoute('link_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('link/edit.html.twig', [
+        return $this->render('admin/link/link/edit.html.twig', [
             'link' => $link,
             'form' => $form->createView(),
         ]);

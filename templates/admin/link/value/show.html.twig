@@ -1,12 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Value{% endblock %}
+{% block title %}{{ parent() }} Fiche {{ value.name }}{% endblock %}
 
 {% block body %}
-    <h1>Value</h1>
+    <div class="container">
+        <h1 class="page-title text-center">Fiche {{ value.name }}</h1>
 
-    <table class="table">
-        <tbody>
+        <table class="table">
+            <tbody>
             <tr>
                 <th>Id</th>
                 <td>{{ value.id }}</td>
@@ -23,12 +24,13 @@
                 <th>Slug</th>
                 <td>{{ value.slug }}</td>
             </tr>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
 
-    <a href="{{ path('value_index') }}">back to list</a>
+        <a href="{{ path('value_index') }}" class="btn btn-outline-primary btn-block">Retour à la liste</a>
 
-    <a href="{{ path('value_edit', {'id': value.id}) }}">edit</a>
+        <a href="{{ path('value_edit', {'id': value.id}) }}" class="btn btn-warning btn-block  mt-3">Éditer</a>
 
-    {{ include('value/_delete_form.html.twig') }}
+        {{ include('admin/link/value/_delete_form.html.twig') }}
+    </div>
 {% endblock %}

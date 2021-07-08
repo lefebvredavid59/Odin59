@@ -14,7 +14,6 @@ class SupportType extends AbstractType
         $builder
             ->add('name')
             ->add('link')
-            ->add('logo')
         ;
     }
 
