@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/admin/category")
+ * @Route("/admin/link/category")
  * @IsGranted("ROLE_ADMIN")
  */
 class CategoryController extends AbstractController

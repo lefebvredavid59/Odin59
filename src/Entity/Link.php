@@ -62,6 +62,51 @@ class Link
      */
     private $created;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $payment;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $timer;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $minimunpayment;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $mining;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $ptc;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $shortlink;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $game;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $auto;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $captcha;
+
     public function __construct()
     {
         $this->value = new ArrayCollection();
@@ -183,5 +228,113 @@ class Link
     public function __toString()
     {
         return $this->getName();
+    }
+
+    public function getPayment(): ?string
+    {
+        return $this->payment;
+    }
+
+    public function setPayment(string $payment): self
+    {
+        $this->payment = $payment;
+
+        return $this;
+    }
+
+    public function getTimer(): ?string
+    {
+        return $this->timer;
+    }
+
+    public function setTimer(?string $timer): self
+    {
+        $this->timer = $timer;
+
+        return $this;
+    }
+
+    public function getMinimunpayment(): ?string
+    {
+        return $this->minimunpayment;
+    }
+
+    public function setMinimunpayment(?string $minimunpayment): self
+    {
+        $this->minimunpayment = $minimunpayment;
+
+        return $this;
+    }
+
+    public function getMining(): ?bool
+    {
+        return $this->mining;
+    }
+
+    public function setMining(bool $mining): self
+    {
+        $this->mining = $mining;
+
+        return $this;
+    }
+
+    public function getPtc(): ?bool
+    {
+        return $this->ptc;
+    }
+
+    public function setPtc(bool $ptc): self
+    {
+        $this->ptc = $ptc;
+
+        return $this;
+    }
+
+    public function getShortlink(): ?bool
+    {
+        return $this->shortlink;
+    }
+
+    public function setShortlink(bool $shortlink): self
+    {
+        $this->shortlink = $shortlink;
+
+        return $this;
+    }
+
+    public function getGame(): ?bool
+    {
+        return $this->game;
+    }
+
+    public function setGame(bool $game): self
+    {
+        $this->game = $game;
+
+        return $this;
+    }
+
+    public function getAuto(): ?bool
+    {
+        return $this->auto;
+    }
+
+    public function setAuto(bool $auto): self
+    {
+        $this->auto = $auto;
+
+        return $this;
+    }
+
+    public function getCaptcha(): ?bool
+    {
+        return $this->captcha;
+    }
+
+    public function setCaptcha(bool $captcha): self
+    {
+        $this->captcha = $captcha;
+
+        return $this;
     }
 }

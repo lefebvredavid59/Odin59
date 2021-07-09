@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/admin/link")
+ * @Route("/admin/link/link")
  * @IsGranted("ROLE_ADMIN")
  */
 class LinkController extends AbstractController

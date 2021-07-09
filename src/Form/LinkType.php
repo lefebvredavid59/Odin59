@@ -17,6 +17,10 @@ class LinkType extends AbstractType
             ->add('link')
             ->add('statue')
             ->add('Top')
+
+            ->add('timer')
+            ->add('payment')
+            ->add('minimunpayment')
             ->add('value')
         ;
     }

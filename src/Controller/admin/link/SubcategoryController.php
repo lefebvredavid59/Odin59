@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/admin/subcategory")
+ * @Route("/admin/link/subcategory")
  * @IsGranted("ROLE_ADMIN")
  */
 class SubcategoryController extends AbstractController
