@@ -21,4 +21,10 @@ class LayoutController extends AbstractController
             'categs' => $categoryRepository->findAll()
         ]);
     }
+
+    public function _footer(): Response
+    {
+        return $this->render('layout/_footer.html.twig', [
+        ]);
+    }
 }

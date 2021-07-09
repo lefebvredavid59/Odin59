@@ -45,7 +45,7 @@
                             <input type="password" name="password" id="inputPassword" class="form-control"
                                    autocomplete="current-password" placeholder="Mot de passe" required>
                                 <label for="inputPassword">Mot de passe</label>
-
+                                <small id="emailHelp" class="form-text text-center"><a href="{{ path('app_forgot_password_request') }}" class="text-decoration-none text-muted">Mot de passe perdu ?</a></small>
                             </div>
                             <input type="hidden" name="_csrf_token"
                                    value="{{ csrf_token('authenticate') }}"

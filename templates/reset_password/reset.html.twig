@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} Réinitialisez votre mot de passe{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="wrapper">
+            <div class="row align-items-center h-100">
+
+                {{ form_start(resetForm, {'attr': {'class': 'col-lg-3 col-md-4 col-10 mx-auto text-center'}}) }}
+                <div class="mx-auto text-center my-4">
+                    <a class="navbar-brand mx-auto mt-2 flex-fill text-center" href="{{ path('index') }}">
+                        <img id="logo" class="navbar-brand-img brand-md" src="{{ asset('assets/Logo_Odin.svg') }}"
+                             alt="Logo du site">
+                    </a>
+                    <h2 class="my-3">Réinitialisez votre mot de passe</h2>
+                </div>
+                <div class="form-group">
+                    {{ form_row(resetForm.plainPassword) }}
+                </div>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Réinitialisez</button>
+                {{ form_end(resetForm) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

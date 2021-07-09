@@ -1,0 +1,26 @@
+{% extends 'bundles/base_error.html.twig' %}
+
+{% block title %}{{ parent() }} 403{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/error403.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row content">
+            <div class="col-lg-12"></div>
+            <div class="col-lg-12">
+                <h1>403</h1>
+                <h2>Nous sommes désolés, mais vous n’avez pas accès à cette page ou à cette ressource.
+                </h2>
+                <p>
+                    Vous voudrez peut-être retourner à la page d'accueil.
+                </p>
+                <a href="{{ path('index') }}" class="btn">RENTRER À LA MAISON</a>
+            </div>
+        </div>
+    </div>
+    <div class="bg-img"></div>
+{% endblock %}

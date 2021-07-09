@@ -107,6 +107,16 @@ class Link
      */
     private $captcha;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $video;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $faucet;
+
     public function __construct()
     {
         $this->value = new ArrayCollection();
@@ -334,6 +344,30 @@ class Link
     public function setCaptcha(bool $captcha): self
     {
         $this->captcha = $captcha;
+
+        return $this;
+    }
+
+    public function getVideo(): ?bool
+    {
+        return $this->video;
+    }
+
+    public function setVideo(bool $video): self
+    {
+        $this->video = $video;
+
+        return $this;
+    }
+
+    public function getFaucet(): ?bool
+    {
+        return $this->faucet;
+    }
+
+    public function setFaucet(bool $faucet): self
+    {
+        $this->faucet = $faucet;
 
         return $this;
     }

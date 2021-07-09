@@ -1,4 +1,70 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-<button class="btn btn-outline-success">{{ button_label|default('Sauvegarder') }}</button>
-{{ form_end(form) }}
+<div class="card shadow mb-4">
+    <div class="card-body">
+        {{ form_start(form) }}
+        <div class="form-group mb-3">
+            {{ form_row(form.subcategory) }}
+        </div>
+        <div class="form-row">
+            <div class="col-md-6 mb-3">
+                {{ form_row(form.name) }}
+            </div>
+            <div class="col-md-6 mb-3">
+                {{ form_row(form.link) }}
+            </div>
+        </div>
+        <div class="form-group mb-3">
+                {{ form_row(form.timer) }}
+        </div>
+        <div class="form-row">
+            <div class="col-md-6 mb-3">
+                {{ form_row(form.payment) }}
+            </div>
+            <div class="col-md-6 mb-3">
+                {{ form_row(form.minimunpayment) }}
+            </div>
+        </div>
+
+        <div class="form-row justify-content-center">
+            <div class="col-md-3 mb-3">
+                {{ form_row(form.mining) }}
+            </div>
+            <div class="col-md-3 mb-3">
+                {{ form_row(form.ptc) }}
+            </div>
+            <div class="col-md-3 mb-3">
+                {{ form_row(form.shortlink) }}
+            </div>
+            <div class="col-md-3 mb-3">
+                {{ form_row(form.game) }}
+            </div>
+            <div class="col-md-3 mb-3">
+                {{ form_row(form.auto) }}
+            </div>
+            <div class="col-md-3 mb-3">
+                {{ form_row(form.captcha) }}
+            </div>
+            <div class="col-md-3 mb-3">
+                {{ form_row(form.video) }}
+            </div>
+            <div class="col-md-3 mb-3">
+                {{ form_row(form.faucet) }}
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-6 mb-3">
+                {{ form_row(form.statue) }}
+            </div>
+            <div class="col-md-6 mb-3">
+                {{ form_row(form.Top) }}
+            </div>
+        </div>
+
+
+        <div class="form-group mb-3">
+            {{ form_row(form.value) }}
+        </div>
+        <button class="btn btn-outline-success">{{ button_label|default('Sauvegarder') }}</button>
+        {{ form_end(form) }}
+    </div>
+</div>

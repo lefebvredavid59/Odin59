@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} Espace {{ app.user.pseudo }}{% endblock %}
+
+{% block body %}
+    <div class="col-12">
+        <h1 class="page-title">Bienvenue {{ app.user.pseudo }} :</h1>
+
+        <div class="row">
+            <div class="col-12 col-md-8 mb-4 ">
+                <div class="card border-light">
+                    <div class="card-body text-center">
+                        <div class="text-black">
+                            <h5 class="font-weight-bold">Modifier mon profile :</h5>
+                        </div>
+                        {{ form_start(form) }}
+                        {{ form_widget(form) }}
+                        <button class="btn btn-block btn-outline-success">{{ button_label|default('Sauvegarder') }}</button>
+                        {{ form_end(form) }}
+                    </div>
+                    <p class="text-center">Pour changer de mot de passe merci de passer par le formulaire prevue a cette effet</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4 ">
+                <div class="card border-light">
+                    <div class="card-body text-center">
+                        <div class="text-black">
+                            <h5 class="font-weight-bold">Supprimer mon compte :</h5>
+                        </div>
+                        <form method="post" action="{{ path('member_user_delete', {'pseudo': app.user.pseudo, 'id': app.user.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir quitter la famille ?');">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ app.user.id) }}">
+                            <button class="btn btn-outline-danger btn-block mt-3"><i class="fas fa-eraser"></i> Supprimer mon compte</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

@@ -23,6 +23,7 @@
                     <tr>
                         <th>Statue</th>
                         <th>Name</th>
+                        <th>Détail</th>
                         <th>Timer</th>
                         <th>Paiement</th>
                         <th>Minimun Paiement</th>
@@ -44,6 +45,32 @@
                                 {% endif %}
                                 {% if date('now') <= link.created|date_modify("+1 week") %}
                             <span class="badge badge-pill badge-success">New</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if link.mining is not empty %}
+                                    <i class="fas fa-hammer"></i>
+                                {% endif %}
+                                {% if link.ptc is not empty %}
+                                    <i class="fas fa-external-link-alt"></i>
+                                {% endif %}
+                                {% if link.shortlink is not empty %}
+                                    <i class="fas fa-link"></i>
+                                {% endif %}
+                                {% if link.game is not empty %}
+                                    <i class="fas fa-gamepad"></i>
+                                {% endif %}
+                                {% if link.auto is not empty %}
+                                    <i class="fas fa-play"></i>
+                                {% endif %}
+                                {% if link.captcha is not empty %}
+                                    <i class="fas fa-sync"></i>
+                                {% endif %}
+                                {% if link.faucet is not empty %}
+                                    <i class="fas fa-faucet"></i>
+                                {% endif %}
+                                {% if link.video is not empty %}
+                                    <i class="fas fa-video"></i>
                                 {% endif %}
                             </td>
                             <td>
