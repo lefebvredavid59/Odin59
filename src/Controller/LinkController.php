@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class LinkController extends AbstractController
 {
     /**
-     * @Route("/{slug}/", name="subcat_link")
+     * @Route("/lien/{slug}/", name="subcat_link")
      */
     public function link($slug, Subcategory $subcategory,
                           ValueRepository $valueRepository, LinkRepository $linkRepository): Response
@@ -29,7 +29,7 @@ class LinkController extends AbstractController
     }
 
     /**
-     * @Route("/{c_slug}/{slug}", name="link_value")
+     * @Route("/lien/{c_slug}/{slug}", name="link_value")
      */
     public function linkValue($c_slug,$slug, Value $value,
                               ValueRepository $valueRepository): Response

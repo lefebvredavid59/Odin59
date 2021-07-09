@@ -33,14 +33,17 @@
                     {% for link in links %}
                         <tr>
                             {% if link.statue == true %}
-                                <td class="bg-success-light">Paye</td>
+                                <td class="bg-success-light"><i class="far fa-check-circle"></i> Ok</td>
                             {% else %}
-                                <td class="bg-warning-lighter">TEST</td>
+                                <td class="bg-warning-lighter">En test</td>
                             {% endif %}
                             <td>
                                 {{ link.name }}
                                 {% if link.top == true %}
-                            <span class="badge badge-pill badge-success">TOP</span>
+                            <span class="badge badge-pill badge-warning">TOP</span>
+                                {% endif %}
+                                {% if date('now') <= link.created|date_modify("+1 week") %}
+                            <span class="badge badge-pill badge-success">New</span>
                                 {% endif %}
                             </td>
                             <td>
