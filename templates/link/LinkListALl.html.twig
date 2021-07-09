@@ -1,31 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ parent() }} {{ name_sub.category.name }} {{ name_sub.name }}{% endblock %}
+{% block title %}{{ parent() }} {{ name_sub.name }}{% endblock %}
 
 {% block body %}
 
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-12 col-lg-10 col-xl-8">
-                <div class="row">
+                <div class="row justify-content-center">
                     {% for value in values %}
-                        <a class="col-md-1 col-6 text-center mb-3" href="{{ path('link_value',
-                            {'v_slug': name_sub.slug, 'slug': value.slug }
-                        ) }}">
-                            <img class="cryptoImg" src="{{ asset('uploads/values/' ~ value.picture ) }}"
-                                 alt="Logo {{ value.name }}">
-                        </a>
+                            <a class="btn btn-light rounded ml-2 mt-2" href="{{ path('link_value',
+                                {'c_slug': name_sub.slug, 'slug': value.slug }
+                            ) }}">
+                                <img class="cryptoImg" src="{{ asset('uploads/values/' ~ value.picture ) }}"
+                                     alt="Logo {{ value.name }}">
+                            </a>
                     {% endfor %}
                 </div>
 
-                <table class="table table-hover">
+                <table class="table table-hover mt-4">
                     <thead>
                     <tr>
                         <th>Statue</th>
                         <th>Name</th>
-                        <th>Company</th>
-                        <th>Address</th>
-                        <th>Date</th>
                         <th>Lien</th>
                     </tr>
                     </thead>
@@ -33,15 +30,13 @@
                     {% for link in links %}
                         <tr>
                             {% if link.statue == true %}
-                            <td class="bg-success-light">Paye</td>
-                                {% else %}
+                                <td class="bg-success-light">Paye</td>
+                            {% else %}
                                 <td class="bg-warning-lighter">TEST</td>
                             {% endif %}
                             <td>{{ link.name }}</td>
-                            <td>Enim Limited</td>
-                            <td>901-6206 Cras Av.</td>
-                            <td>Apr 24, 2019</td>
-                            <td><a href="{{ link.link }}" target="_blank" class="btn btn-sm btn-success btn-block">Claim</a></td>
+                            <td><a href="{{ link.link }}" target="_blank"
+                                   class="btn btn-sm btn-success btn-block">Claim</a></td>
                         </tr>
                     {% endfor %}
                     </tbody>

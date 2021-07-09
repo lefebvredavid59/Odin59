@@ -32,9 +32,11 @@
 
 
         {% for categ in categs %}
+            {% if categ.subcategory is not empty %}
             <p class="text-muted nav-heading mt-4 mb-1">
                 <span><i class="{{ categ.logo }}"></i> {{ categ.name }}</span>
             </p>
+            {% endif %}
             <ul class="navbar-nav flex-fill w-100 mb-2">
                 {% for subcat in categ.subcategory %}
                     {% if subcat.link is not empty %}

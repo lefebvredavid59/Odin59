@@ -1,29 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ parent() }} {{ name_sub.name }}{% endblock %}
+{% block title %}{{ parent() }} {{ name_sub.name }} {{ name_sub.name }}{% endblock %}
 
 {% block body %}
 
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-12 col-lg-10 col-xl-8">
-                <div id="feather-icons" class="row">
+                <div class="row justify-content-center">
                     {% for value in values %}
-                        <div class="col-md-1 col-6 text-center mb-3">
+                        <a class="btn btn-light rounded ml-2 mt-2" href="{{ path('link_value',
+                            {'c_slug': name_ub , 'slug': value.slug }
+                        ) }}">
                             <img class="cryptoImg" src="{{ asset('uploads/values/' ~ value.picture ) }}"
                                  alt="Logo {{ value.name }}">
-                        </div>
+                        </a>
                     {% endfor %}
                 </div>
 
-                <table class="table table-hover">
+                <table class="table table-hover mt-4">
                     <thead>
                     <tr>
                         <th>Statue</th>
                         <th>Name</th>
-                        <th>Company</th>
-                        <th>Address</th>
-                        <th>Date</th>
                         <th>Lien</th>
                     </tr>
                     </thead>
@@ -36,9 +35,6 @@
                                 <td class="bg-warning-lighter">TEST</td>
                             {% endif %}
                             <td>{{ link.name }}</td>
-                            <td>Enim Limited</td>
-                            <td>901-6206 Cras Av.</td>
-                            <td>Apr 24, 2019</td>
                             <td><a href="{{ link.link }}" target="_blank" class="btn btn-sm btn-success btn-block">Claim</a></td>
                         </tr>
                     {% endfor %}

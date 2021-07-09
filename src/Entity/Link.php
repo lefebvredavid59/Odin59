@@ -168,11 +168,6 @@ class Link
         return $this;
     }
 
-    public function __toString()
-    {
-        return $this->getName();
-    }
-
     public function getCreated(): ?\DateTimeInterface
     {
         return $this->created;
@@ -183,5 +178,10 @@ class Link
         $this->created = $created;
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getName();
     }
 }

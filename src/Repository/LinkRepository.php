@@ -19,6 +19,19 @@ class LinkRepository extends ServiceEntityRepository
         parent::__construct($registry, Link::class);
     }
 
+    public function filterLinkAll($slug){
+
+        return $this->createQueryBuilder('l')
+            ->innerJoin('l.value','v')
+            ->innerJoin('l.subcategory','s')
+            ->where('s.slug = :slug')
+            ->setParameter('slug', $slug)
+            ->addSelect('v','s')
+            ->orderBy('v.name', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 
     public function filterValue($slug){
 
@@ -26,18 +39,7 @@ class LinkRepository extends ServiceEntityRepository
             ->innerJoin('l.subcategory','s')
             ->where('s.slug = :slug')
             ->setParameter('slug', $slug)
-            ->orderBy('l.name', 'ASC')
-            ->getQuery()
-            ->getResult()
-            ;
-    }
-
-    public function filterLinkBySubcat(){
-
-        return $this->createQueryBuilder('l')
-            ->innerJoin('l.subcategory','s')
-            ->where('s.slug = :slug')
-            ->setParameter('slug', $slug)
+            ->addSelect('l','s')
             ->orderBy('l.name', 'ASC')
             ->getQuery()
             ->getResult()

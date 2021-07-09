@@ -13,30 +13,31 @@ use Symfony\Component\Routing\Annotation\Route;
 class LinkController extends AbstractController
 {
     /**
-     * @Route("/link/{slug}/", name="subcat_link")
+     * @Route("/{slug}/", name="subcat_link")
      */
     public function link($slug, Subcategory $subcategory,
                           ValueRepository $valueRepository, LinkRepository $linkRepository): Response
     {
-        $v_slug = $slug;
 
         return $this->render('link/LinkListALl.html.twig', [
-            'values' => $valueRepository->filterValue($v_slug),
+            'values' => $valueRepository->filterValueAll($slug),
             'links' => $linkRepository->filterValue($slug),
             'name_sub' => $subcategory,
         ]);
     }
 
     /**
-     * @Route("/link/{v_slug}/{slug}", name="link_value")
+     * @Route("/{c_slug}/{slug}", name="link_value")
      */
-    public function linkValue($v_slug,$slug, Value $value,
-                              ValueRepository $valueRepository, LinkRepository $linkRepository): Response
+    public function linkValue($c_slug,$slug, Value $value,
+                              ValueRepository $valueRepository): Response
     {
+
         return $this->render('link/LinkListValue.html.twig', [
-            'values' => $valueRepository->filterValue($v_slug),
-            'links' => $linkRepository->filterValue($slug),
+            'values' => $valueRepository->filterValue($c_slug),
+            'links' => $value->getLinks(),
             'name_sub' => $value,
+            'name_ub' => $c_slug,
         ]);
     }
 }
