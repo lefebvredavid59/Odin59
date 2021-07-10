@@ -21,7 +21,7 @@ class ValueType extends AbstractType
                 ],
             ])
             ->add('name')
-//            ->add('links')
+            ->add('symbol')
         ;
     }
 
