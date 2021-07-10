@@ -40,7 +40,7 @@
                             {% endif %}
                             <td>
                                 {{ link.name }}
-                                {% if link.top == true %}pill
+                                {% if link.top == true %}
                             <span class="badgetop badge rounded-pill badge-warning font-weight-bold">TOP</span>
                                 {% endif %}
                                 {% if date('now') <= link.created|date_modify("+1 week") %}
