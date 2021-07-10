@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\CategoryRepository;
 use App\Repository\SupportRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,10 +13,10 @@ class IndexController extends AbstractController
     /**
      * @Route("/", name="index")
      */
-    public function index(): Response
+    public function index(CategoryRepository $categoryRepository): Response
     {
         return $this->render('site/index.html.twig', [
-            'controller_name' => 'IndexController',
+            'cates' => $categoryRepository->findAll(),
         ]);
     }
 

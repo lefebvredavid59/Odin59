@@ -6,10 +6,10 @@
 
     <div class="container-fluid">
         <div class="row justify-content-center">
-            <div class="col-12 col-lg-10 col-xl-8">
+{#            <div class="col-12 col-lg-10 col-xl-8">#}
                 <div class="row justify-content-center">
                     {% for value in values %}
-                        <a class="btn btn-light rounded ml-2 mt-2" href="{{ path('link_value',
+                        <a class="btn btn-success rounded ml-2 mt-2" href="{{ path('link_value',
                             {'c_slug': name_ub , 'slug': value.slug }
                         ) }}">
                             <img class="cryptoImg" src="{{ asset('uploads/values/' ~ value.picture ) }}"
@@ -34,17 +34,17 @@
                     {% for link in links %}
                         <tr>
                             {% if link.statue == true %}
-                                <td class="bg-success-light"><i class="far fa-check-circle"></i> Ok</td>
+                                <td class="bg-success-dark"><i class="far fa-check-circle"></i> Ok</td>
                             {% else %}
-                                <td class="bg-warning-lighter">En test</td>
+                                <td class="bg-warning-dark">En test</td>
                             {% endif %}
                             <td>
                                 {{ link.name }}
-                                {% if link.top == true %}
-                            <span class="badge badge-pill badge-warning">TOP</span>
+                                {% if link.top == true %}pill
+                            <span class="badgetop badge rounded-pill badge-warning font-weight-bold">TOP</span>
                                 {% endif %}
                                 {% if date('now') <= link.created|date_modify("+1 week") %}
-                            <span class="badge badge-pill badge-success">New</span>
+                            <span class="badgenew badge rounded-pill badge-success font-weight-bold">New</span>
                                 {% endif %}
                             </td>
                             <td>
@@ -100,7 +100,7 @@
                     {% endfor %}
                     </tbody>
                 </table>
-            </div>
+{#            </div>#}
         </div> <!-- .row -->
     </div>
 
