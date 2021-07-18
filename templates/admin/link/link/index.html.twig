@@ -17,6 +17,7 @@
     <table class="table" id="listeLien">
         <thead>
             <tr>
+                <th>Categorie</th>
                 <th>Valeurs</th>
                 <th>Name</th>
                 <th>Slug</th>
@@ -30,6 +31,7 @@
         <tbody>
         {% for link in links %}
             <tr>
+                <td>{{ link.subcategory.name }}</td>
                 <td>{{ link.value.count }}</td>
                 <td>{{ link.name }}</td>
                 <td>{{ link.slug }}</td>
