@@ -31,7 +31,7 @@
         <tbody>
         {% for link in links %}
             <tr>
-                <td>{{ link.subcategory.name }}</td>
+                <td>{{ link.subcategory.category.name }} - {{ link.subcategory.name }}</td>
                 <td>{{ link.value.count }}</td>
                 <td>{{ link.name }}</td>
                 <td>{{ link.slug }}</td>
