@@ -17,7 +17,7 @@ class LayoutController extends AbstractController
     public function _left(CategoryRepository $categoryRepository): Response
     {
         return $this->render('layout/_left.html.twig', [
-            'categs' => $categoryRepository->findAll()
+            'categs' => $categoryRepository->categsleft()
         ]);
     }
 

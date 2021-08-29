@@ -12,30 +12,30 @@
             </a>
         </div>
 
+        <p class="text-muted nav-heading mt-4 mb-1">
+            <span><i class="fas fa-home"></i> Le site</span>
+        </p>
         <ul class="navbar-nav flex-fill w-100 mb-2">
-            <li class="nav-item dropdown">
-                <a href="#Dashboard" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
+            <li class="nav-item w-100">
+                <a class="nav-link" href="{{ path('index') }}">
                     <i class="fas fa-home"></i>
-                    <span class="ml-3 item-text">Site</span><span class="sr-only">(current)</span>
+                    <span class="ml-3 item-text">Accueil</span>
                 </a>
-                <ul class="collapse list-unstyled pl-4 w-100" id="Dashboard">
-                    <li class="nav-item active">
-                        <a class="nav-link pl-3" href="{{ path('index') }}"><span class="ml-1 item-text">Accueil</span></a>
-                    </li>
-                    <li class="nav-item w-100">
-                        <a class="nav-link pl-3" href="{{ path('don') }}"><span class="ml-1 item-text">Don</span></a>
-                    </li>
-
-                </ul>
+            </li>
+            <li class="nav-item w-100">
+                <a class="nav-link" href="{{ path('don') }}">
+                    <i class="fas fa-hand-holding-heart"></i>
+                    <span class="ml-3 item-text">Don</span>
+                </a>
             </li>
         </ul>
 
 
         {% for categ in categs %}
             {% if categ.subcategory is not empty %}
-            <p class="text-muted nav-heading mt-4 mb-1">
-                <span><i class="{{ categ.logo }}"></i> {{ categ.name }}</span>
-            </p>
+                <p class="text-muted nav-heading mt-4 mb-1">
+                    <span><i class="{{ categ.logo }}"></i> {{ categ.name }}</span>
+                </p>
             {% endif %}
             <ul class="navbar-nav flex-fill w-100 mb-2">
                 {% for subcat in categ.subcategory %}
@@ -44,7 +44,7 @@
                             <a class="nav-link" href="{{ path('subcat_link', {'slug': subcat.slug}) }}">
                                 <i class="{{ subcat.logo }}"></i>
                                 <span class="ml-3 item-text">{{ subcat.name }}</span>
-{#                                <span class="badge badge-pill badge-primary">New</span>#}
+                                {# <span class="badge badge-pill badge-primary">New</span> #}
                             </a>
                         </li>
                     {% endif %}

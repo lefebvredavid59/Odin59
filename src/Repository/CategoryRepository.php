@@ -19,6 +19,17 @@ class CategoryRepository extends ServiceEntityRepository
         parent::__construct($registry, Category::class);
     }
 
+    public function categsleft()
+    {
+        return $this->createQueryBuilder('c')
+            ->where('c.subcategory is not empty')
+            ->innerJoin('c.subcategory','s')
+            ->andWhere('s.link is not empty')
+            ->addSelect('c','s')
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Category[] Returns an array of Category objects
     //  */
