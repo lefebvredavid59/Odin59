@@ -32,13 +32,16 @@ class LinkType extends AbstractType
                 'label' => 'Lien :'
             ])
             ->add('timer', TextType::class, [
-                'label' => 'Timer :'
+                'label' => 'Timer :',
+                'required' => false,
             ])
             ->add('payment', TextType::class, [
-                'label' => 'Type Paiement :'
+                'label' => 'Type Paiement :',
+                'required' => false,
             ])
             ->add('minimunpayment', TextType::class, [
-                'label' => 'Minimun Paiement :'
+                'label' => 'Minimun Paiement :',
+                'required' => false,
             ])
             ->add('statue')
             ->add('Top')
