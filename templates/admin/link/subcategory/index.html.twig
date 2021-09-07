@@ -17,8 +17,7 @@
     <table class="table" id="listeSousCategorie">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Name</th>
+                <th>Nom</th>
                 <th>Slug</th>
                 <th>Logo</th>
                 <th>Voir</th>
@@ -28,7 +27,6 @@
         <tbody>
         {% for subcategory in subcategories %}
             <tr>
-                <td>{{ subcategory.id }}</td>
                 <td>{{ subcategory.name }}</td>
                 <td>{{ subcategory.slug }}</td>
                 <td>{{ subcategory.logo }}</td>
