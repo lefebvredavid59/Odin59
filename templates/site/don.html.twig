@@ -15,7 +15,7 @@
                         </div>
                         <img class="w-25 img-fluid mx-auto my-3 rounded-circle"
                              src="{{ asset('assets/Logo_Odin.svg') }}" alt="Logo du site">
-                        <p class="px-2">Nous souhaitons que le site reste 100% gratuit.</p>
+                        <p class="px-2">Maintenir ce site me demande du temps vos dons me motivent à continuer.</p>
                     </div>
                 </div>
             </div>
@@ -24,10 +24,11 @@
                 <div class="card mb-0">
                     <div class="row card-body text-center">
                         {% for support in supports %}
-
                             <div class="col-md-6">
-                                <p class="font-weight-bold">{{ support.name }}</p>
-                                <p>{{ support.link }}</p>
+                                <p class="font-weight-bold">
+                                    <img src="{{ asset('uploads/values/' ~ support.value.picture ) }}" width="25" height="25">
+                                    {{ support.value.name }}</p>
+                                <p>{{ support.adresse }}</p>
                             </div>
 
                         {% endfor %}

@@ -51,9 +51,15 @@ class Value
      */
     private $site;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Support::class, mappedBy="value")
+     */
+    private $supports;
+
     public function __construct()
     {
         $this->links = new ArrayCollection();
+        $this->supports = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -151,5 +157,35 @@ class Value
     public function __toString()
     {
         return $this->getName();
+    }
+
+    /**
+     * @return Collection|Support[]
+     */
+    public function getSupports(): Collection
+    {
+        return $this->supports;
+    }
+
+    public function addSupport(Support $support): self
+    {
+        if (!$this->supports->contains($support)) {
+            $this->supports[] = $support;
+            $support->setValue($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSupport(Support $support): self
+    {
+        if ($this->supports->removeElement($support)) {
+            // set the owning side to null (unless already changed)
+            if ($support->getValue() === $this) {
+                $support->setValue(null);
+            }
+        }
+
+        return $this;
     }
 }

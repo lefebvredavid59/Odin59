@@ -17,9 +17,8 @@
         <table class="table" id="listeSupport">
             <thead>
             <tr>
-                <th>Id</th>
+                <th>Logo</th>
                 <th>Name</th>
-                <th>Slug</th>
                 <th>Link</th>
                 <th>Voir</th>
                 <th>Modifier</th>
@@ -28,10 +27,10 @@
             <tbody>
             {% for support in supports %}
                 <tr>
-                    <td>{{ support.id }}</td>
-                    <td>{{ support.name }}</td>
-                    <td>{{ support.slug }}</td>
-                    <td>{{ support.link }}</td>
+                    <td><img src="{{ asset('uploads/values/' ~ support.value.picture ) }}"
+                             alt="Logo {{ support.value.name }}" width="25" height="25"></td>
+                    <td>{{ support.value.name }}</td>
+                    <td>{{ support.adresse }}</td>
                     <td><a href="{{ path('support_show', {'id': support.id}) }}">Voir</a></td>
                     <td>
                         <a href="{{ path('support_edit', {'id': support.id}) }}">Modifier</a>

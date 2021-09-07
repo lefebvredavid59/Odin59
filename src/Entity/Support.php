@@ -19,58 +19,41 @@ class Support
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\ManyToOne(targetEntity=Value::class, inversedBy="supports")
      */
-    private $name;
-
-    /**
-     * @Gedmo\Slug(fields={"name"})
-     * @ORM\Column(type="string", length=255)
-     */
-    private $slug;
+    private $value;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $link;
+    private $adresse;
+
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getValue(): ?Value
     {
-        return $this->name;
+        return $this->value;
     }
 
-    public function setName(string $name): self
+    public function setValue(?Value $value): self
     {
-        $this->name = $name;
+        $this->value = $value;
 
         return $this;
     }
 
-    public function getSlug(): ?string
+    public function getAdresse(): ?string
     {
-        return $this->slug;
+        return $this->adresse;
     }
 
-    public function setSlug(string $slug): self
+    public function setAdresse(string $adresse): self
     {
-        $this->slug = $slug;
-
-        return $this;
-    }
-
-    public function getLink(): ?string
-    {
-        return $this->link;
-    }
-
-    public function setLink(string $link): self
-    {
-        $this->link = $link;
+        $this->adresse = $adresse;
 
         return $this;
     }

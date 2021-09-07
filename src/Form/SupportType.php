@@ -12,8 +12,8 @@ class SupportType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('link')
+            ->add('value')
+            ->add('adresse')
         ;
     }
 
