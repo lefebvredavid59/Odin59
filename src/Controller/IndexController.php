@@ -26,7 +26,7 @@ class IndexController extends AbstractController
     public function don(SupportRepository $supportRepository): Response
     {
         return $this->render('site/don.html.twig', [
-            'supports' => $supportRepository->findAll(),
+            'supports' => $supportRepository->OrderByAlpha(),
         ]);
     }
 }

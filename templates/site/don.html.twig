@@ -24,13 +24,22 @@
                 <div class="card mb-0">
                     <div class="row card-body text-center">
                         {% for support in supports %}
-                            <div class="col-md-6">
-                                <p class="font-weight-bold">
-                                    <img src="{{ asset('uploads/values/' ~ support.value.picture ) }}" width="25" height="25">
-                                    {{ support.value.name }}</p>
-                                <p>{{ support.adresse }}</p>
+                        <div class="col-md-6 mb-4">
+                            <div class="accordion w-100" id="accordion1">
+                                <div class="card shadow">
+                                    <div class="card-header" id="heading1">
+                                        <a role="button" href="#collapse-{{ support.value.slug }}" data-toggle="collapse" data-target="#collapse-{{ support.value.slug }}" aria-expanded="false" aria-controls="collapse-{{ support.value.slug }}">
+                                            <strong><img src="{{ asset('uploads/values/' ~ support.value.picture ) }}"
+                                                         alt="Logo {{ support.value.name }}"  width="25" height="25">
+                                                {{ support.value.name }}</strong>
+                                        </a>
+                                    </div>
+                                    <div id="collapse-{{ support.value.slug }}" class="collapse" aria-labelledby="heading1" data-parent="#accordion1">
+                                        <div class="card-body">{{ support.adresse }}</div>
+                                    </div>
+                                </div>
                             </div>
-
+                        </div>
                         {% endfor %}
                     </div>
                 </div>

@@ -6,126 +6,128 @@
 
     <div class="container-fluid">
         <div class="row justify-content-center">
-                <div class="row justify-content-center">
-                    {% for value in values %}
-                        <a class="btn btn-outline-success ml-2 mt-2" href="{{ path('link_value',
-                            {'c_slug': name_ub , 'slug': value.slug }
-                        ) }}">
-                            <img class="cryptoImg" src="{{ asset('uploads/values/' ~ value.picture ) }}"
-                                 alt="Logo {{ value.name }}">
-                        </a>
-                    {% endfor %}
-                </div>
+            <div class="row justify-content-center">
+                {% for value in values %}
+                    <a class="btn btn-outline-success ml-2 mt-2" href="{{ path('link_value',
+                        {'c_slug': name_ub , 'slug': value.slug }
+                    ) }}">
+                        <img class="cryptoImg" src="{{ asset('uploads/values/' ~ value.picture ) }}"
+                             alt="Logo {{ value.name }}">
+                    </a>
+                {% endfor %}
+            </div>
 
-                <table class="table table-hover mt-4 text-center">
-                    <thead>
-                    <tr>
-                        <th>Statue</th>
-                        <th>Name</th>
-                        {% if name is not empty %}
+            <table class="table table-hover mt-4 text-center">
+                <thead>
+                <tr>
+                    <th>Statue</th>
+                    <th>Name</th>
+                    {% if name is not empty %}
                         <th>Value</th>
-                            {% else %}
-                                <th>Valeur</th>
+                    {% else %}
+                        <th>Nombre de Valeur</th>
+                    {% endif %}
+                    <th>Détail</th>
+                    <th>Timer</th>
+                    <th>Paiement</th>
+                    <th>Minimun Paiement</th>
+                    <th>Lien</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for link in links %}
+                    <tr>
+                        {% if link.statue == true %}
+                            <td class="bg-success-dark"><i class="far fa-check-circle"></i> Ok</td>
+                        {% else %}
+                            <td class="bg-warning-dark">En test</td>
                         {% endif %}
-                        <th>Détail</th>
-                        <th>Timer</th>
-                        <th>Paiement</th>
-                        <th>Minimun Paiement</th>
-                        <th>Lien</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for link in links %}
-                        <tr>
-                            {% if link.statue == true %}
-                                <td class="bg-success-dark"><i class="far fa-check-circle"></i> Ok</td>
-                            {% else %}
-                                <td class="bg-warning-dark">En test</td>
+                        <td>
+                            {{ link.name }}
+                            {% if link.top == true %}
+                                <span class="badgetop badge rounded-pill badge-warning font-weight-bold">TOP</span>
                             {% endif %}
-                            <td>
-                                {{ link.name }}
-                                {% if link.top == true %}
-                                    <span class="badgetop badge rounded-pill badge-warning font-weight-bold">TOP</span>
-                                {% endif %}
-                                {% if date('now') <= link.created|date_modify("+1 week") %}
-                                    <span class="badgenew badge rounded-pill badge-success font-weight-bold">New</span>
-                                {% endif %}
-                            </td>
+                            {% if date('now') <= link.created|date_modify("+1 week") %}
+                                <span class="badgenew badge rounded-pill badge-success font-weight-bold">New</span>
+                            {% endif %}
+                        </td>
 
-                            <td class="justify-content-between">
-                                {% if name is not empty %}
-                                    <img src="{{ asset('uploads/values/' ~ name.picture) }}"
-                                         alt="Logo {{ name.name }}" height="25" width="25">
+                        <td class="justify-content-between">
+                            {% if name is not empty %}
+                                <img src="{{ asset('uploads/values/' ~ name.picture) }}"
+                                     alt="Logo {{ name.name }}" height="25" width="25">
 
-                                    {{ name.name }} ({{ name.symbol }})
+                                {{ name.name }} ({{ name.symbol }})
 
-                                {% else %}
-                                    {{ link.value.count }}
-                                {% endif %}
-                            </td>
+                            {% else %}
+                                {{ link.value.count }}
+                            {% endif %}
+                        </td>
 
 
-                            <td class="d-flex justify-content-around">
-                                {% if link.mining is not empty %}
-                                    <i class="fas fa-hammer" data-toggle="tooltip" data-placement="top"
-                                       title="Mining"></i>
-                                {% endif %}
-                                {% if link.ptc is not empty %}
-                                    <i class="fas fa-external-link-alt" data-toggle="tooltip" data-placement="top"
-                                       title="PTC"></i>
-                                {% endif %}
-                                {% if link.shortlink is not empty %}
-                                    <i class="fas fa-link" data-toggle="tooltip" data-placement="top"
-                                       title="ShortLink"></i>
-                                {% endif %}
-                                {% if link.game is not empty %}
-                                    <i class="fas fa-gamepad" data-toggle="tooltip" data-placement="top"
-                                       title="Jeux"></i>
-                                {% endif %}
-                                {% if link.auto is not empty %}
-                                    <i class="fas fa-play" data-toggle="tooltip" data-placement="top"
-                                       title="Auto faucet"></i>
-                                {% endif %}
-                                {% if link.captcha is not empty %}
-                                    <i class="fas fa-sync" data-toggle="tooltip" data-placement="top"
-                                       title="Captcha"></i>
-                                {% endif %}
-                                {% if link.faucet is not empty %}
-                                    <i class="fas fa-faucet" data-toggle="tooltip" data-placement="top"
-                                       title="Faucet"></i>
-                                {% endif %}
-                                {% if link.video is not empty %}
-                                    <i class="fas fa-video" data-toggle="tooltip" data-placement="top"
-                                       title="Vidéo"></i>
-                                {% endif %}
-                            </td>
-                            <td>
-                                {% if link.timer is not empty %}
-                                    {{ link.timer }}
-                                {% else %}
-                                    No Timer
-                                {% endif %}
-                            </td>
-                            <td>
-                                {% if link.payment is not empty %}
-                                    {{ link.payment }}
-                                {% else %}
-                                    No Type
-                                {% endif %}
-                            </td>
-                            <td>
-                                {% if link.minimunpayment is not empty %}
-                                    {{ link.minimunpayment }}
-                                {% else %}
-                                    No minimum
-                                {% endif %}
-                            </td>
-                            <td><a href="{{ link.link }}" target="_blank"
-                                   class="btn btn-sm btn-success btn-block">Claim</a></td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
+                        <td class="d-flex justify-content-around">
+                            {% if link.mining is not empty %}
+                                <i class="fas fa-hammer" data-toggle="tooltip" data-placement="top"
+                                   title="Mining"></i>
+                            {% endif %}
+                            {% if link.ptc is not empty %}
+                                <i class="fas fa-external-link-alt" data-toggle="tooltip" data-placement="top"
+                                   title="PTC"></i>
+                            {% endif %}
+                            {% if link.shortlink is not empty %}
+                                <i class="fas fa-link" data-toggle="tooltip" data-placement="top"
+                                   title="ShortLink"></i>
+                            {% endif %}
+                            {% if link.game is not empty %}
+                                <i class="fas fa-gamepad" data-toggle="tooltip" data-placement="top"
+                                   title="Jeux"></i>
+                            {% endif %}
+                            {% if link.auto is not empty %}
+                                <i class="fas fa-play" data-toggle="tooltip" data-placement="top"
+                                   title="Auto faucet"></i>
+                            {% endif %}
+                            {% if link.captcha is not empty %}
+                                <i class="fas fa-sync" data-toggle="tooltip" data-placement="top"
+                                   title="Captcha"></i>
+                            {% endif %}
+                            {% if link.faucet is not empty %}
+                                <i class="fas fa-faucet" data-toggle="tooltip" data-placement="top"
+                                   title="Faucet"></i>
+                            {% endif %}
+                            {% if link.video is not empty %}
+                                <i class="fas fa-video" data-toggle="tooltip" data-placement="top"
+                                   title="Vidéo"></i>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if link.timer is not empty %}
+                                {{ link.timer }}
+                            {% else %}
+                                No Timer
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if link.payment is not empty %}
+                                {{ link.payment }}
+                            {% else %}
+                                No Type
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if link.minimunpayment is not empty %}
+                                {{ link.minimunpayment }}
+                            {% else %}
+                                No minimum
+                            {% endif %}
+                        </td>
+                        <td><a href="{{ link.link }}" target="_blank"
+                               class="btn btn-sm btn-success btn-block">Claim</a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+
+            </table>
         </div> <!-- .row -->
     </div>
 {% endblock %}

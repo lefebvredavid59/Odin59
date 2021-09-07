@@ -33,14 +33,15 @@ class LinkRepository extends ServiceEntityRepository
             ;
     }
 
-    public function filterValue($slug){
+    public function filterValue($slug)
+    {
 
         return $this->createQueryBuilder('l')
             ->innerJoin('l.subcategory','s')
             ->where('s.slug = :slug')
             ->setParameter('slug', $slug)
             ->addSelect('l','s')
-            ->orderBy('l.name', 'ASC')
+            ->orderBy('l.Top', 'DESC')
             ->getQuery()
             ->getResult()
             ;

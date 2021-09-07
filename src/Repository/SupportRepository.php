@@ -19,6 +19,15 @@ class SupportRepository extends ServiceEntityRepository
         parent::__construct($registry, Support::class);
     }
 
+    public function OrderByAlpha()
+    {
+        return $this->createQueryBuilder('s')
+            ->innerJoin('s.value','v')
+            ->orderBy('v.name')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
     // /**
     //  * @return Support[] Returns an array of Support objects
     //  */

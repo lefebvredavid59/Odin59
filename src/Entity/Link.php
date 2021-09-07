@@ -235,11 +235,6 @@ class Link
         return $this;
     }
 
-    public function __toString()
-    {
-        return $this->getName();
-    }
-
     public function getPayment(): ?string
     {
         return $this->payment;
@@ -370,5 +365,10 @@ class Link
         $this->faucet = $faucet;
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getName();
     }
 }
