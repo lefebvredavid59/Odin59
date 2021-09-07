@@ -18,6 +18,7 @@
         <thead>
             <tr>
                 <th>Logo</th>
+                <th>Site</th>
                 <th>Nom</th>
                 <th>Symbole</th>
                 <th>Slug</th>
@@ -29,6 +30,14 @@
         {% for value in values %}
             <tr>
                 <td><a href="{{ asset('uploads/values/' ~ value.picture ) }}" target="_blank">Logo</a></td>
+                <td class="text-center">
+                    {% if value.site is not empty %}
+                        <a href="{{ value.site }}" target="_blank">Site</a>
+                    {% else %}
+                        <i class="far fa-times-circle text-danger"></i>
+                    {% endif %}
+
+                </td>
                 <td>{{ value.name }}</td>
                 <td>{{ value.symbol }}</td>
                 <td>{{ value.slug }}</td>

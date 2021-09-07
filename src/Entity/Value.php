@@ -46,6 +46,11 @@ class Value
      */
     private $symbol;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $site;
+
     public function __construct()
     {
         $this->links = new ArrayCollection();
@@ -92,6 +97,30 @@ class Value
         return $this;
     }
 
+    public function getSymbol(): ?string
+    {
+        return $this->symbol;
+    }
+
+    public function setSymbol(?string $symbol): self
+    {
+        $this->symbol = $symbol;
+
+        return $this;
+    }
+
+    public function getSite(): ?string
+    {
+        return $this->site;
+    }
+
+    public function setSite(?string $site): self
+    {
+        $this->site = $site;
+
+        return $this;
+    }
+
     /**
      * @return Collection|Link[]
      */
@@ -122,17 +151,5 @@ class Value
     public function __toString()
     {
         return $this->getName();
-    }
-
-    public function getSymbol(): ?string
-    {
-        return $this->symbol;
-    }
-
-    public function setSymbol(?string $symbol): self
-    {
-        $this->symbol = $symbol;
-
-        return $this;
     }
 }

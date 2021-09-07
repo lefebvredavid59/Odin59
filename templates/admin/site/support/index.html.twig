@@ -21,7 +21,6 @@
                 <th>Name</th>
                 <th>Slug</th>
                 <th>Link</th>
-                <th>Logo</th>
                 <th>Voir</th>
                 <th>Modifier</th>
             </tr>
@@ -33,7 +32,6 @@
                     <td>{{ support.name }}</td>
                     <td>{{ support.slug }}</td>
                     <td>{{ support.link }}</td>
-                    <td>{{ support.logo }}</td>
                     <td><a href="{{ path('support_show', {'id': support.id}) }}">Voir</a></td>
                     <td>
                         <a href="{{ path('support_edit', {'id': support.id}) }}">Modifier</a>

@@ -18,10 +18,10 @@ class LinkController extends AbstractController
     public function link($slug, Subcategory $subcategory,
                           ValueRepository $valueRepository, LinkRepository $linkRepository): Response
     {
-
         return $this->render('link/linkList.html.twig', [
             'values' => $valueRepository->filterValueAll($slug),
             'links' => $linkRepository->filterValue($slug),
+            'name' => NULL,
             'name_sub' => $subcategory,
             'name_ub' => $slug,
             'title' => $subcategory->getCategory()->getName() .' '. $subcategory->getName()
@@ -34,9 +34,9 @@ class LinkController extends AbstractController
     public function linkValue($c_slug,$slug, Value $value,
                               ValueRepository $valueRepository): Response
     {
-
         return $this->render('link/linkList.html.twig', [
             'values' => $valueRepository->filterValue($c_slug),
+            'name' => $value,
             'links' => $value->getLinks(),
             'name_sub' => $value,
             'title' => $value->getName() .' ',

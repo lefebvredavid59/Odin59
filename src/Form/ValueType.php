@@ -25,6 +25,9 @@ class ValueType extends AbstractType
             ->add('name',TextType::class, [
                 'label' => 'Nom :'
             ])
+            ->add('site',TextType::class, [
+                'label' => 'Site :'
+            ])
             ->add('symbol',TextType::class, [
                 'label' => 'Symbole :'
             ])
