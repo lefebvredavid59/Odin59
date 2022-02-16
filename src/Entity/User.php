@@ -39,10 +39,9 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=255, unique=true)
+     * @ORM\Column(type="string", length=150, unique=true)
      * @Assert\Regex(
-     *     pattern     = "/^[a-z0-9]+$/i",
-     *     htmlPattern = "^[a-zA-Z0-9]+$"
+     *     pattern     = "/^[A-Za-z][A-Za-z0-9]{5,31}$/",
      * )
      */
     private $pseudo;
